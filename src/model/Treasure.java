@@ -4,17 +4,47 @@ import java.lang.Math;
 
 public class Treasure{
 	
-	private String name;
+	private int type;
+	private TypeTreasure typeTreasure;
 	private String image;
-	private String numLevel;
+	private int numLevel;
 	private double posX;
 	private double posY;
 
-	public Treasure(String inName, String inImage, String inNumLevel){
-		name = inName;
-		image = inImage;
-		numLevel = inNumLevel;
-		posX = Math.random() *1280 + 720;
-		posY = Math.random() *1280 + 720;
+	public Treasure(int type, String image, int numLevel){
+		this.type = type;
+		this.image = image;
+		this.numLevel = numLevel;
+		posX = Math.random() *1280;
+		posY = Math.random() *720;
+		typeTreasure();
+	}
+
+	public void typeTreasure(){
+		if (type == 0){
+			typeTreasure = TypeTreasure.RUBY;
+		}else if (type == 1){
+			typeTreasure = TypeTreasure.EMERALD;
+		}else if(type == 2){
+			typeTreasure = TypeTreasure.DIAMOND;
+		}else if( type == 3){
+			typeTreasure = TypeTreasure.COAL;
+		}
+	}
+
+	public TypeTreasure getTypeTreasure(){
+		return typeTreasure;
+	}
+
+	public String getImage(){
+		return image;
+	}
+
+	public double getPosX(){
+		return posX;
+	}
+
+	public double getPosY(){
+		return posY;
 	}
 }

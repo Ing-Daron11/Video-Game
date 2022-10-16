@@ -4,6 +4,7 @@ public class Player{
 	private String nickname;
 	private int score;
 	private int lives;
+	private int level;
 
 	//Constructor
 	public Player(String inId, String inNickname){
@@ -11,6 +12,7 @@ public class Player{
 		nickname = inNickname;
 		score = 0;
 		lives = 5;
+		level = 0;
 	}
 
 	public String getNickname(){
@@ -21,4 +23,20 @@ public class Player{
 		return id;
 	}
 
+	public int getLevel(){
+		return level;
+	}
+
+	public void setLevel(int newLevel){
+		level = newLevel;
+	}
+
+	public int getScore(){
+		return score;
+	}
+
+	public void setScore(int newScore){
+		score += newScore;
+
+	} 
 }

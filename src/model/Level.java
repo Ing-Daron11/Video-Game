@@ -1,7 +1,7 @@
 package model;
 public class Level{
 	
-	private String id;
+	private int id;
 	private int scoreNeeded;
 	//private difficultyLevel difficulty;
 
@@ -11,7 +11,7 @@ public class Level{
 	public static final int SIZE_OF_TREASURES = 10;//por nivel
 	public static final int SIZE_OF_ENEMIES = 10; //por nivel
 
-	public Level(String inId, int inScoreNeeded){ //Constructor
+	public Level(int inId, int inScoreNeeded){ //Constructor
 		id = inId;
 		scoreNeeded = inScoreNeeded;
 		//difficulty = ...;
@@ -46,9 +46,59 @@ public class Level{
 		return msj;
 	}
 
-	public String getId(){
+	public String listEnemies(){
+		String msj = "";
+		for(int i = 0; i < SIZE_OF_ENEMIES; i++){
+			if(enemy[i] != null){
+				msj += "|-----------------------------|\n" +
+						"Enemy name: " + enemy[i].getTypeEnemy() + "\n" +
+						"Score that removes: " + enemy[i].getScoreRemove() + "\n" +
+						"Score that gives: " + enemy[i].getScoreGive() + ". \n";
+			}
+		}
+		return msj;
+	}
+
+	public String listTreasures(){
+		String msj = "";
+		for(int i = 0; i < SIZE_OF_TREASURES; i++){
+			if(treasure[i] != null){
+				msj += "|-----------------------------| \n" +
+						"Treasure name: " + treasure[i].getTypeTreasure() + "\n" +
+						"Image: " + treasure[i].getImage() + " \n" +
+						"Position : (" + treasure[i].getPosX() + " , " + treasure[i].getPosY() + ") \n";
+			}
+		}
+		return msj;
+	}
+
+	public int countTreasures(){
+		int counter = 0;
+		for (int i = 0;i < SIZE_OF_TREASURES;i++){
+			if(treasure[i] != null){
+				counter++;
+			}
+			
+		}
+		return counter;
+	}
+
+	public int countEnemies(){
+		int counter = 0;
+		for (int i = 0; i < SIZE_OF_ENEMIES;i++){
+			if(enemy[i] != null){
+				counter++;
+			}	
+		}
+		return counter;
+	}
+
+	public int getId(){
 		return id;
 	}
 
+	public int getScoreNeeded(){
+		return scoreNeeded;
+	}
 
 }
