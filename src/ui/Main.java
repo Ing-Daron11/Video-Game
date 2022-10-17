@@ -73,6 +73,7 @@ public class Main{
 		String msj = "";
 		boolean sw = true;
 		boolean sw2 = true;
+		int numPrueba;
 
 		switch(option){
 			case 1: //Add a player
@@ -95,7 +96,7 @@ public class Main{
 						input.next();
 						System.out.println("Enter a valid integer number ");
 					}
-					int numPrueba = input.nextInt();
+					numPrueba = input.nextInt();
 					if (videogame.validateCorrectOption(numPrueba)){
 						sw = false;
 						int treasureType = numPrueba;
@@ -133,12 +134,12 @@ public class Main{
 								 	 "0. OGRE \n" +
 								 	 "1. ABSTRACT \n" +
 								 	 "2. BOSS \n" +
-								 	 "3. MAGIC");
+								 	 "3. MAGIC \n");
 					while (!input.hasNextInt()){
 						input.next();
 						System.out.println("Enter a valid integer number ");
 					}
-					int numPrueba = input.nextInt();
+					numPrueba = input.nextInt();
 					if (videogame.validateCorrectOption(numPrueba)){
 						sw = false;
 						int enemyType = numPrueba;
@@ -211,29 +212,75 @@ public class Main{
 				break;
 
 			case 6: //List enemies and tresures of a level
-				System.out.print("Type the level you want to know the iformation: ");
-				while (!input.hasNextInt()){
-					input.next();
-					System.out.println("Enter a valid integer number ");
+				while(sw){
+					System.out.print("Type the level you want to know the iformation: ");
+					while (!input.hasNextInt()){
+						input.next();
+						System.out.println("Enter a valid integer number ");
+					}
+					numPrueba = input.nextInt();
+					if(numPrueba == 0){
+						System.out.println("The levels avaiable are: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10");
+					}else if(videogame.validateLevelExist(numPrueba)){
+						sw = false;
+						int numLevel = numPrueba;
+						System.out.print("|<<<<<<<<<<ENEMIES>>>>>>>>>| \n");
+						msj = videogame.listEnemiesOfALevel(numLevel);
+						System.out.println(msj);
+						System.out.print("|<<<<<<<<<<TREASURES>>>>>>>>>|\n");
+						msj2 = videogame.listTreasuresOfALevel(numLevel);
+						System.out.println(msj2);
+					} else{
+						System.out.println("There are only 10 avaible levels. choose one of them.");
+					}
 				}
-				int numLevel = input.nextInt();
-				System.out.print("|<<<<<<<<<<ENEMIES>>>>>>>>>| \n");
-				msj = videogame.listEnemiesOfALevel(numLevel);
-				System.out.println(msj);
-				System.out.print("|<<<<<<<<<<TREASURES>>>>>>>>>|\n");
-				msj2 = videogame.listTreasuresOfALevel(numLevel);
-				System.out.println(msj2);
-
+				
 				break;
 
 			case 7: //search amount of a tresure in all levels
-				msj = videogame.countTreasuresOfAllLevels();
-				System.out.println(msj);
+				while(sw){
+					System.out.println("Type the number of the treasure you want to look for: \n"+
+								   	"0. RUBY \n" +
+								 	"1. EMERALD \n" +
+								 	"2. DIAMOND \n" +
+								 	"3. COAL \n");
+					while (!input.hasNextInt()){
+						input.next();
+						System.out.println("Enter a valid integer number ");
+					}
+					numPrueba = input.nextInt();
+					if(videogame.validateCorrectOption(numPrueba)){
+						sw = false;
+						int treasureType = numPrueba;
+						msj = videogame.countTreasureOfAllLevels(treasureType);
+						System.out.println(msj);
+					}else{
+						System.out.println("Select a valid option");
+					}
+				}
 				break;
 
 			case 8: //search amount of a enemy in all levels
-				msj = videogame.countEnemiesOfAllLevels();
-				System.out.println(msj);
+				while(sw){
+					System.out.println("Type the number of the enemy you want to look for: \n" +
+								 	 "0. OGRE \n" +
+								 	 "1. ABSTRACT \n" +
+								 	 "2. BOSS \n" +
+								 	 "3. MAGIC \n");
+					while (!input.hasNextInt()){
+							input.next();
+							System.out.println("Enter a valid integer number ");
+					}
+					numPrueba = input.nextInt();
+					if(videogame.validateCorrectOption(numPrueba)){
+						sw = false;
+						int enemyType = numPrueba;
+						msj = videogame.countEnemieOfAllLevels(enemyType);
+						System.out.println(msj);
+					}else{
+							System.out.println("Select a valid option");
+						}
+				}
 				break;
 
 			case 9: //What's the treasure most repeated?

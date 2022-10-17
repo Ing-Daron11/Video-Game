@@ -47,4 +47,10 @@ public class Treasure{
 	public double getPosY(){
 		return posY;
 	}
+	
+	public int getOnlyTypeTreasure(){
+		return type;
+	}
+
+
 }

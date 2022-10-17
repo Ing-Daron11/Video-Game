@@ -116,12 +116,14 @@ public class Videogame{
 		}else {
 			int numLevelPlayer = player[pos].getLevel();
 			int numScorePlayer = player[pos].getScore();
-			if(level[numLevelPlayer+1].getScoreNeeded() <= numScorePlayer){ //error indexOutOfBoundsException
+			if(numLevelPlayer ==9){
+				msj = "Maximun level reached";
+			}else if(level[numLevelPlayer+1].getScoreNeeded() <= numScorePlayer){
 				player[pos].setLevel(numLevelPlayer+1);
-				msj = "The player '" + player[pos].getNickname() + "'' is now in the level: " + player[pos].getLevel() + "."; 
-			}else{
-				msj = "The player '" + player[pos].getNickname() + "'' is missing: " + ((level[numLevelPlayer+1].getScoreNeeded()) - (numScorePlayer)) + " points to pass to the next level";
-			}
+				msj = "The player '" + player[pos].getNickname() + "'' is now in the level: " + (player[pos].getLevel()+1) + "."; 
+				}else{
+					msj = "The player '" + player[pos].getNickname() + "'' is missing: " + ((level[numLevelPlayer+1].getScoreNeeded()) - (numScorePlayer)) + " points to pass to the next level";
+				}
 			
 		}
 		return msj;
@@ -172,23 +174,23 @@ public class Videogame{
 		return msj;
 	}
 
-	public String countTreasuresOfAllLevels(){
+	public String countTreasureOfAllLevels(int typeTreasure){
 		String msj = "";
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_LEVELS;i++){
-			counter += level[i].countTreasures();
+			counter += level[i].countSpecificTreasure(typeTreasure);
 		}
-		msj = "The amount of treasure in all levels are: " + counter + ".";
+		msj = "The amount of this treasure in all levels are: " + counter + ".";
 		return msj;
 	}
 
-	public String countEnemiesOfAllLevels(){
+	public String countEnemieOfAllLevels(int typeEnemy){
 		String msj = "";
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_LEVELS; i++){
-			counter += level[i].countEnemies();
+			counter += level[i].countSpecificEnemy(typeEnemy);
 		}
-		msj = "The amount of enemies in all levels are: " + counter + ".";
+		msj = "The amount of this enemie in all levels are: " + counter + ".";
 		return msj;
 	}
 

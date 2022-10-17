@@ -39,6 +39,8 @@ public class Enemy{
 		return scoreGive;
 	}
 
-
+	public int getOnlyTypeEnemy(){
+		return type;
+	}
 
 }

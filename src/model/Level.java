@@ -1,4 +1,7 @@
 package model;
+
+import java.lang.Math;
+
 public class Level{
 	
 	private int id;
@@ -14,9 +17,16 @@ public class Level{
 	public Level(int inId, int inScoreNeeded){ //Constructor
 		id = inId;
 		scoreNeeded = inScoreNeeded;
-		//difficulty = ...;
-		treasure = new Treasure[SIZE_OF_TREASURES];
+		treasure = new Treasure[SIZE_OF_TREASURES]; //int type, String image, int numLevel
+		treasure[0] = new Treasure((int)(Math.random() *4),"https://assets.stickpng.com/images/589b24bd2096a705e895cd7b.png", (int)(Math.random() *10));
+		treasure[1] = new Treasure((int)(Math.random() *4),"https://assets.stickpng.com/images/589b24bd2096a705e895cd7b.png", (int)(Math.random() *10));
+		treasure[2] = new Treasure((int)(Math.random() *4),"https://assets.stickpng.com/images/589b24bd2096a705e895cd7b.png", (int)(Math.random() *10));
+		treasure[3] = new Treasure((int)(Math.random() *4),"https://assets.stickpng.com/images/589b24bd2096a705e895cd7b.png", (int)(Math.random() *10));
+		treasure[4] = new Treasure((int)(Math.random() *4),"https://assets.stickpng.com/images/589b24bd2096a705e895cd7b.png", (int)(Math.random() *10));
 		enemy = new Enemy[SIZE_OF_ENEMIES];
+		enemy[0] = new Enemy((int)(Math.random() *4), (int)(Math.random() *10), (int)(Math.random() *10), (int)(Math.random() *10));
+		enemy[1] = new Enemy((int)(Math.random() *4), (int)(Math.random() *10), (int)(Math.random() *10), (int)(Math.random() *10));
+		enemy[2] = new Enemy((int)(Math.random() *4), (int)(Math.random() *10), (int)(Math.random() *10),  (int)(Math.random() *10));
 	}
 
 	public String addTreasureWithObject(Treasure objectTreasure){
@@ -72,22 +82,27 @@ public class Level{
 		return msj;
 	}
 
-	public int countTreasures(){
+	public int countSpecificTreasure(int typeTreasure){
 		int counter = 0;
 		for (int i = 0;i < SIZE_OF_TREASURES;i++){
-			if(treasure[i] != null){
+			if(treasure[i] != null){ 
+				if(treasure[i].getOnlyTypeTreasure() == typeTreasure){
 				counter++;
+				}
 			}
 			
 		}
 		return counter;
 	}
 
-	public int countEnemies(){
+	public int countSpecificEnemy(int typeEnemy){
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_ENEMIES;i++){
 			if(enemy[i] != null){
-				counter++;
+				if(enemy[i].getOnlyTypeEnemy()== typeEnemy){
+					counter++;
+				}
+				
 			}	
 		}
 		return counter;
