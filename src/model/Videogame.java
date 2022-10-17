@@ -175,7 +175,7 @@ public class Videogame{
 	}
 
 	public String countTreasureOfAllLevels(int typeTreasure){
-		String msj = "";
+		String msj = ""; ////////////////////////////////////////////////////////////
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_LEVELS;i++){
 			counter += level[i].countSpecificTreasure(typeTreasure);
@@ -208,6 +208,42 @@ public class Videogame{
 			isOptionCorrect = true;
 		}
 		return isOptionCorrect;
+	}
+	public String mostRepeatedTreasure(){
+		String msj1 = "";
+		String msj2 = "";
+		int counter0 = 0;
+		int counter1 = 0;
+		int counter2 = 0;
+		int counter3 = 0;
+		int semifinalist1 = 0;
+		int semifinalist2 = 0;
+
+		for (int i = 0; i < SIZE_OF_LEVELS;i++){
+			counter0 += level[i].countSpecificTreasure(0);
+			counter1 += level[i].countSpecificTreasure(1);
+			counter2 += level[i].countSpecificTreasure(2);
+			counter3 += level[i].countSpecificTreasure(3);
+		}
+		if(counter0 > counter1){
+			semifinalist1 = counter0;
+			msj1 = "The most repeated treasure is: RUBY";
+		}else{
+			semifinalist1 = counter1;
+			msj1 = "The most repeated treasure is: EMERALD";
+		}
+		if (counter2 > counter3){
+			semifinalist2 = counter2;
+			msj2 = "The most repeated treasure is: DIAMOD";
+		}else{
+			semifinalist2 = counter3;
+			msj2 = "The most repeated treasure is: COAL";
+		}
+		if(semifinalist1 > semifinalist2){
+			return msj1;
+		}else{
+			return msj2;
+		}
 	}
 
 }

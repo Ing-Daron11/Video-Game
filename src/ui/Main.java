@@ -62,7 +62,7 @@ public class Main{
 				"6. List enemies and tresures of a level \n" +
 				"7. search amount of a tresure in all levels \n" +
 				"8. search amount of a enemy in all levels \n" +
-				"9. What's the treasure most repeated? \n" +
+				"9. What's the most repeated treasure? \n" +
 				"10. search for the enemy with highest score \n" +
 				"11. Show the sum of consonants of all enemies \n" +
 				"12. Show the 5 best players \n" +
@@ -283,8 +283,9 @@ public class Main{
 				}
 				break;
 
-			case 9: //What's the treasure most repeated?
-					
+			case 9: //What's the most repeated treasure?
+					msj = videogame.mostRepeatedTreasure();
+					System.out.println(msj);
 				break;
 
 			case 10:
