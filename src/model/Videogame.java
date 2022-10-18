@@ -225,14 +225,14 @@ public class Videogame{
 			counter2 += level[i].countSpecificTreasure(2);
 			counter3 += level[i].countSpecificTreasure(3);
 		}
-		if(counter0 > counter1){
+		if(counter0 >= counter1){
 			semifinalist1 = counter0;
 			msj1 = "The most repeated treasure is: RUBY";
 		}else{
 			semifinalist1 = counter1;
 			msj1 = "The most repeated treasure is: EMERALD";
 		}
-		if (counter2 > counter3){
+		if (counter2 >= counter3){
 			semifinalist2 = counter2;
 			msj2 = "The most repeated treasure is: DIAMOD";
 		}else{
@@ -244,6 +244,30 @@ public class Videogame{
 		}else{
 			return msj2;
 		}
+	}
+
+	public String enemyWhithHighestScoreAllLevels(){
+		String msj = "";
+		int max = 0;
+		int pos = 0;
+		for(int i = 0; i< SIZE_OF_LEVELS; i++){
+			if(level[i].enemyWhithHighestScoreInt() > max){
+				max = level[i].enemyWhithHighestScoreInt();
+				pos = i;
+			}
+		}
+		msj	= "The name of the Enemy with the highest Score ("+ max + ") is:"+ level[pos].getEnemyName(max) +" and is located in level: " + level[pos].getId() + ".";
+		return msj;
+	}
+
+	public String showConsonantsOfEnemiesInAllLevels(){
+		String msj = "";
+		int counter = 0;
+		for(int i = 0; i < SIZE_OF_LEVELS; i++){
+			counter += level[i].showConsonantsOfEnemies();
+		}
+		msj = "The amount of consonants of the enemies' names in all levels are: " + counter;
+		return msj;
 	}
 
 }

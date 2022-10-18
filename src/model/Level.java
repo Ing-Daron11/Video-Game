@@ -108,6 +108,58 @@ public class Level{
 		return counter;
 	}
 
+	public int enemyWhithHighestScoreInt(){
+		int highestScore = 0;
+		for(int i = 0; i< SIZE_OF_ENEMIES; i++){
+			if(enemy[i] != null){
+				if(enemy[i].getScoreGive() > highestScore){
+					highestScore = enemy[i].getScoreGive();
+				}
+			}
+		}
+		return highestScore;
+	}
+
+	public String getEnemyName(int scoreGive){
+		String msj = "";
+		boolean sw = false;
+		for(int i = 0; i < SIZE_OF_ENEMIES && !sw; i ++){
+			if(scoreGive == enemy[i].getScoreGive()){
+				sw = true;
+				if(enemy[i].getOnlyTypeEnemy() == 0){
+					msj = "OGRE";
+				}else if(enemy[i].getOnlyTypeEnemy() == 1){
+					msj = "ABSTRACT";
+				}else if(enemy[i].getOnlyTypeEnemy() == 2){
+					msj = "BOSS";
+				}else{
+					msj = "MAGIC";
+				}
+			}
+		}
+		return msj;
+	}
+
+	public int showConsonantsOfEnemies(){
+		int counter = 0;
+		for(int i = 0; i < SIZE_OF_ENEMIES; i++){
+			if(enemy[i] != null){
+				if(enemy[i].getOnlyTypeEnemy() == 0){
+				counter += 2;
+				}else if(enemy[i].getOnlyTypeEnemy() == 1){
+					counter += 6;
+				}else if(enemy[i].getOnlyTypeEnemy() == 2){
+					counter += 3;
+				}else{
+					counter += 3;
+				}
+			}
+			
+		}
+		return counter;
+	}
+		
+
 	public int getId(){
 		return id;
 	}

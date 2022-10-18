@@ -64,7 +64,7 @@ public class Main{
 				"8. search amount of a enemy in all levels \n" +
 				"9. What's the most repeated treasure? \n" +
 				"10. search for the enemy with highest score \n" +
-				"11. Show the sum of consonants of all enemies \n" +
+				"11. Show the sum of consonants of all enemies' names in all levels \n" +
 				"12. Show the 5 best players \n" +
 				"0. Exit.\n"; 
 	}
@@ -111,9 +111,9 @@ public class Main{
 							int numLevelPrueba = input.nextInt();
 							if(numLevelPrueba == 0){
 								System.out.println("The levels avaiable are: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ");
-							}else if(videogame.validateLevelExist(numLevelPrueba)){
+							}else if(videogame.validateLevelExist(numLevelPrueba -1)){
 								sw2 = false;
-								int numLevel = numLevelPrueba;
+								int numLevel = numLevelPrueba-1;
 								msj = videogame.addTreasureToLevel(treasureType, treasureImage, numLevel);
 								System.out.println(msj);
 							}else{
@@ -165,7 +165,7 @@ public class Main{
 							int numLevelPrueba = input.nextInt();
 							if(numLevelPrueba == 0){
 								System.out.println("The levels avaiable are: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10");
-							}else if(videogame.validateLevelExist(numLevelPrueba)){
+							}else if(videogame.validateLevelExist(numLevelPrueba -1)){
 								sw2 = false;
 								int numLevel = numLevelPrueba;
 								msj = videogame.addEnemyToLevel(enemyType, scoreRemove, scoreGive, numLevel);
@@ -221,7 +221,7 @@ public class Main{
 					numPrueba = input.nextInt();
 					if(numPrueba == 0){
 						System.out.println("The levels avaiable are: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10");
-					}else if(videogame.validateLevelExist(numPrueba)){
+					}else if(videogame.validateLevelExist(numPrueba -1)){
 						sw = false;
 						int numLevel = numPrueba;
 						System.out.print("|<<<<<<<<<<ENEMIES>>>>>>>>>| \n");
@@ -288,12 +288,14 @@ public class Main{
 					System.out.println(msj);
 				break;
 
-			case 10:
-
+			case 10: //search for the enemy with highest score
+				msj = videogame.enemyWhithHighestScoreAllLevels();
+				System.out.println(msj);
 				break;
 
-			case 11:
-
+			case 11: //Show the sum of consonants of all enemies
+				msj = videogame.showConsonantsOfEnemiesInAllLevels();
+				System.out.println(msj);
 				break;
 
 			case 12:
