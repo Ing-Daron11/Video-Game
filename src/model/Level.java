@@ -29,6 +29,11 @@ public class Level{
 		enemy[2] = new Enemy((int)(Math.random() *4), (int)(Math.random() *10), (int)(Math.random() *10),  (int)(Math.random() *10));
 	}
 
+
+	/**This metyhopd allows to add a treasure with the obhject already created.
+	 * @param: objectTreasure: Treasure = Its the object already created.
+	 * @return: msj: String = It says that the treasure was succefully added or not
+	 */
 	public String addTreasureWithObject(Treasure objectTreasure){
 		String msj = "Maximun capacity reached";
 		boolean sw = false;
@@ -43,6 +48,10 @@ public class Level{
 		return msj;
 	}
 
+	/**This metyhopd allows to add a enemy with the obhject already created.
+	 * @param: objectEnemy: Enemy = Its the object already created.
+	 * @return: msj: String = It says that the enemy was succefully added or not
+	 */
 	public String addEnemyWithObject(Enemy objectEnemy){
 		String msj = "Maximun capacity reached";
 		boolean sw = false;
@@ -56,6 +65,9 @@ public class Level{
 		return msj;
 	}
 
+	/**This method allows to list the enemies of one level
+	 * @return: msj: String = it conytains the information of the enemies
+	 */
 	public String listEnemies(){
 		String msj = "";
 		for(int i = 0; i < SIZE_OF_ENEMIES; i++){
@@ -69,6 +81,9 @@ public class Level{
 		return msj;
 	}
 
+	/**This method allows to list the treasures of one level
+	 * @return: msj: String = it conytains the information of the treasures
+	 */
 	public String listTreasures(){
 		String msj = "";
 		for(int i = 0; i < SIZE_OF_TREASURES; i++){
@@ -159,7 +174,7 @@ public class Level{
 		return counter;
 	}
 		
-
+	//Getters and setters
 	public int getId(){
 		return id;
 	}

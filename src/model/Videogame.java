@@ -1,12 +1,15 @@
 package model;
+import java.util.Arrays;
 
 public class Videogame{
 	
 	public static final int SIZE_OF_PLAYERS = 30;
 	public static final int SIZE_OF_LEVELS = 10;
+	public static final int SIZE_OF_PLAYERSSCORE = 30;
 
 	private Player[] player;
 	private Level[] level;
+	private int[] playerScore;
 	private Treasure treasure;
 	private Enemy enemy;
 
@@ -46,7 +49,20 @@ public class Videogame{
 		level[9] = new Level(10, 55);
 	}
 
+	public void initPlayerScore(){
+		playerScore = new int[SIZE_OF_PLAYERSSCORE];
+		for(int i = 0; i <SIZE_OF_PLAYERSSCORE; i++){
+			if(player[i] != null){
+				playerScore[i] = player[i].getScore();
+			}
+		}
+	}
 
+	/** This method allows to add a player to the videogame
+	 * @param: id: String = It represents the id of the player
+	 * @param: nickname: String = it is the name or nickname of the player
+	 * @return: msj: String = It says if the player was added or cannot be added due to a lack of space 
+	 */
 	public String addPlayer(String id, String nickname){
 		Player newPlayer = new Player(id, nickname);
 		String msj = "Maximun capacity reached";
@@ -61,6 +77,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to look for a level by its id
+	 * @param: numLevel: int = it represents the level
+	 * @return: pos: int = it contains the position of the level or if the level does not exist, it will contain -1
+	 */
 	public int searchLevelById(int numLevel){
 		int pos = -1;
 		boolean sw = false;
@@ -73,6 +93,12 @@ public class Videogame{
 		return pos;
 	}
 
+	/**This method allows to add a treasure to level selected by the user.
+	 * @param: type: int = it cointain the type of the treasure.
+	 * @param: image: String = It contais an URL of a image of the treasure.
+	 * @param: numLevel: int = 	It contains the level where is going to be added the treasure.
+	 * @return: msj: String = It contains a massage that says if the level wasn't found or if it was succesfully added.
+	 */
 	public String addTreasureToLevel(int type, String image, int numLevel){
 		Treasure newTreasure = new Treasure(type, image, numLevel);
 		String msj = "The level wasn't found";
@@ -83,6 +109,13 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to add a enemy to a level selected by the user.
+	 * @param: type: int = it contains the type of the enemy
+	 * @param: scoreRemove: int = it contains the score that removes in case if it wins
+	 * @param: scoreGive: int = it contains the score that gives in case if it looses.
+	 * @param: numLevel: int = 	It contains the level where is going to be added the enemy.
+	 * @return: msj: String = it contains a massage that says if the level wasn't found or if it was succesfully added.
+	 */
 	public String addEnemyToLevel(int type, int scoreRemove, int scoreGive, int numLevel){
 		Enemy newEnemy = new Enemy(type, scoreRemove, scoreGive, numLevel);
 		String msj = "The level wasn't found.";
@@ -93,6 +126,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to look for a player by its id
+	 * @param: idPlayer: String = It contains thhe id of the player.
+	 * @return: pos: int = it represents the position of the player or -1 if it wasn't found
+	 */
 	public int searchPlayerById(String idPlayer){
 		int pos = -1;
 		boolean sw = false;
@@ -108,6 +145,10 @@ public class Videogame{
 		return pos;
 	}
 
+	/**This method allows to pass a player to the next level.
+	 * @param: idPlayer: String = it cointains the id of the player.
+	 * @return: msj: String = It says if the player does not exist, how many points are left to pass the level or just say that pass to the next level 
+	 */
 	public String levelUpPlayer(String idPlayer){
 		String msj = "";
 		int pos = searchPlayerById(idPlayer);
@@ -129,6 +170,11 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to increase the score of the player
+	 * @param: idPlayer: String = it contains the id of the player
+	 * @param: inNewScore: int = it represents the score that is going to be added to the previous score
+	 * @return: msj: String = It says if the player does not exist or what is the new score.
+	 */
 	public String modifyPlayerScore(String idPlayer, int inNewScore){
 		String msj = "";
 		int pos = searchPlayerById(idPlayer);
@@ -141,6 +187,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to know the information of the player
+	 * @param: idPlayer: String = It's the id of the player
+	 * @return: msj. String = It says if the player does not exist or what is the actual score.
+	 */
 	public String statusPlayer(String idPlayer){
 		String msj = "";
 		int pos = searchPlayerById(idPlayer);
@@ -152,6 +202,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to list the enemies of a level
+	 * @param: numLevel: int = it represents the level.
+	 * @return: msj: String = It says if the level exist or the information of the enemies of that level
+	 */
 	public String listEnemiesOfALevel(int numLevel){
 		String msj = "";
 		int posLevel = searchLevelById(numLevel);
@@ -163,6 +217,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to list the treasures of a level
+	 * @param: numLevel: int = it represents the level.
+	 * @return: msj: String = It says if the level exist or the information of the treasures of that level
+	 */
 	public String listTreasuresOfALevel(int numLevel){
 		String msj = "";
 		int posLevel = searchLevelById(numLevel);
@@ -174,8 +232,12 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to count a type of a tresure in all levels
+	 * @param: typeTreasure: int = It is the type of the treasure that is going to be searched.
+	 * @return: msj: String = It says the amount of treasures found.
+	 */
 	public String countTreasureOfAllLevels(int typeTreasure){
-		String msj = ""; ////////////////////////////////////////////////////////////
+		String msj = "";
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_LEVELS;i++){
 			counter += level[i].countSpecificTreasure(typeTreasure);
@@ -184,6 +246,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to count a type of a enemy in all levels
+	 * @param: typeEnemy: int = It is the type of the enemy that is going to be searched.
+	 * @return: msj: String = It says the amount of enemies found.
+	 */
 	public String countEnemieOfAllLevels(int typeEnemy){
 		String msj = "";
 		int counter = 0;
@@ -194,6 +260,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**	this method allows to validate if a level exist
+	 * @param: numLevel: int = 	it is the level that is going to be validated
+	 * @return: levelExist: boolean = True if yes or False if not exist.
+	 */
 	public boolean validateLevelExist(int numLevel){
 		boolean levelExist = false;
 		if(numLevel >=0 && numLevel <=9){
@@ -202,6 +272,10 @@ public class Videogame{
 		return levelExist;
 	}
 
+	/**	this method allows to validate if the option is correct
+	 * @param: option: int = it is the number that is going to be validated
+	 * @return: isOptionCorrect: boolean = True if yes or False if not.
+	 */
 	public boolean validateCorrectOption(int option){
 		boolean isOptionCorrect = false;
 		if(option >=0 && option <=3){
@@ -209,6 +283,11 @@ public class Videogame{
 		}
 		return isOptionCorrect;
 	}
+
+	/** This method allows to show the most repeated treasure in all levels
+	 * @param: none
+	 * @return: msj: String = It contains the name of the most repeated treasure.
+	 */
 	public String mostRepeatedTreasure(){
 		String msj1 = "";
 		String msj2 = "";
@@ -246,6 +325,10 @@ public class Videogame{
 		}
 	}
 
+	/**This method allows to know what is the enemy with the highest score that gives
+	 * @param: none
+	 * @return: msj: String = It contains the name, number and the level of that enemy.
+	 */
 	public String enemyWhithHighestScoreAllLevels(){
 		String msj = "";
 		int max = 0;
@@ -260,6 +343,10 @@ public class Videogame{
 		return msj;
 	}
 
+	/**This method allows to show th eamount of consonants of the names of all enemies in the game.
+	 * @param: none
+	 * @return: msj: String = It says the amount of consonants.
+	 */
 	public String showConsonantsOfEnemiesInAllLevels(){
 		String msj = "";
 		int counter = 0;
@@ -268,6 +355,39 @@ public class Videogame{
 		}
 		msj = "The amount of consonants of the enemies' names in all levels are: " + counter;
 		return msj;
+	}
+
+	/**This method allows to print the 5 best scores of the players
+	 * @param: none
+	 *@return: msj: String = It contains the 5 players with their scores.
+	 */
+	public String printBestFivePlayers(){
+		initPlayerScore(); 
+		String msj = "";
+		bubleSort(playerScore);
+		msj = Arrays.toString(playerScore);	
+		return msj;
+	}
+
+	/**This method allows to order the array of the playesr's scores
+	 * @param: playerScore: int[] = It is the array of the playesr's scores
+	 * @return: 
+	 * 
+	 */
+	public array bubleSort(int[] playerScore){
+		initPlayerScore();
+    	for (int i = 0; i < SIZE_OF_PLAYERS; i++){
+        	for (int j = 0; j < SIZE_OF_PLAYERS - 1; j++){
+            	int elementoActual = playerScore[j],
+            	elementoSiguiente = playerScore[j + 1];
+          	 	if (elementoActual < elementoSiguiente) {
+              	  // Intercambiar
+              	  playerScore[j] = elementoSiguiente;
+              	  playerScore[j + 1] = elementoActual;
+           		}
+       	 	}
+    	}
+    	return playerScore;
 	}
 
 }

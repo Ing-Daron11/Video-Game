@@ -10,11 +10,12 @@ public class Player{
 	public Player(String inId, String inNickname){
 		id = inId;
 		nickname = inNickname;
-		score = 0;
+		score = 10;
 		lives = 5;
 		level = 0;
 	}
 
+	//Getters and setters
 	public String getNickname(){
 		return nickname;
 	}

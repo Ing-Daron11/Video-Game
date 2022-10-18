@@ -7,7 +7,7 @@ public class Enemy{
 	private int scoreGive;
 	private int numLevel;
 
-
+	//Constructor
 	public Enemy(int type, int scoreRemove, int scoreGive, int numLevel){
 		this.scoreRemove = scoreRemove;
 		this.scoreGive = scoreGive;
@@ -16,6 +16,10 @@ public class Enemy{
 		typeEnemy();
 	}
 
+	/**This method allows to calculate and asign the type to the a enemy 
+	 * @param: none
+	 * @return: none
+	 */
 	public void typeEnemy(){
 		if (type == 0){
 			typeEnemy = TypeEnemy.OGRE;
@@ -28,6 +32,7 @@ public class Enemy{
 		}
 	}
 
+	//Getters and setters
 	public TypeEnemy getTypeEnemy(){
 		return typeEnemy;
 	}

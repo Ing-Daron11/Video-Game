@@ -20,6 +20,10 @@ public class Treasure{
 		typeTreasure();
 	}
 
+	/**This method allows to calculate and asign the type to the a treasure 
+	 * @param: none
+	 * @return: none
+	 */
 	public void typeTreasure(){
 		if (type == 0){
 			typeTreasure = TypeTreasure.RUBY;
@@ -32,6 +36,7 @@ public class Treasure{
 		}
 	}
 
+	//Getters and setters
 	public TypeTreasure getTypeTreasure(){
 		return typeTreasure;
 	}

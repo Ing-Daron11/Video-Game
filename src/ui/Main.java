@@ -65,7 +65,7 @@ public class Main{
 				"9. What's the most repeated treasure? \n" +
 				"10. search for the enemy with highest score \n" +
 				"11. Show the sum of consonants of all enemies' names in all levels \n" +
-				"12. Show the 5 best players \n" +
+				"12.  \n" +
 				"0. Exit.\n"; 
 	}
 
@@ -298,8 +298,9 @@ public class Main{
 				System.out.println(msj);
 				break;
 
-			case 12:
-
+			case 12: //Show the 5 best players
+				msj = videogame.printBestFivePlayers();
+				System.out.println(msj);
 				break;
 
 			case 0:
