@@ -13,6 +13,8 @@ public class Videogame{
 	private Treasure treasure;
 	private Enemy enemy;
 
+	/**Constructor
+	 */
 	public Videogame(){
 		player = new Player[SIZE_OF_PLAYERS];
 		player[0] = new Player("111", "Vojaabes");
@@ -47,15 +49,6 @@ public class Videogame{
 		level[7] = new Level(8, 45);
 		level[8] = new Level(9, 50);
 		level[9] = new Level(10, 55);
-	}
-
-	public void initPlayerScore(){
-		playerScore = new int[SIZE_OF_PLAYERSSCORE];
-		for(int i = 0; i <SIZE_OF_PLAYERSSCORE; i++){
-			if(player[i] != null){
-				playerScore[i] = player[i].getScore();
-			}
-		}
 	}
 
 	/** This method allows to add a player to the videogame
@@ -362,29 +355,34 @@ public class Videogame{
 	 *@return: msj: String = It contains the 5 players with their scores.
 	 */
 	public String printBestFivePlayers(){
-		initPlayerScore(); 
 		String msj = "";
-		bubleSort(playerScore);
-		msj = Arrays.toString(playerScore);	
+		for (int i = 0;i <5 ;i++ ){
+			if(bubleSort()[i] != null){
+				msj += (i+1) + ". " + bubleSort()[i].getNickname()+ " Score: ("+ bubleSort()[i].getScore() +") \n";
+			}
+		}	
 		return msj;
 	}
 
 	/**This method allows to order the array of the playesr's scores
-	 * @param: playerScore: int[] = It is the array of the playesr's scores
-	 * @return: 
-	 * 
+	 * @param: none
+	 * @return: playerScore: Player[] = It represents the array already ordered
 	 */
-	public array bubleSort(int[] playerScore){
-		initPlayerScore();
+	public Player[] bubleSort(){
+		Player elementoActual = null;
+		Player elementoSiguiente = null;
+		Player[] playerScore = player;
     	for (int i = 0; i < SIZE_OF_PLAYERS; i++){
         	for (int j = 0; j < SIZE_OF_PLAYERS - 1; j++){
-            	int elementoActual = playerScore[j],
+            	elementoActual = playerScore[j];
             	elementoSiguiente = playerScore[j + 1];
-          	 	if (elementoActual < elementoSiguiente) {
-              	  // Intercambiar
-              	  playerScore[j] = elementoSiguiente;
-              	  playerScore[j + 1] = elementoActual;
-           		}
+            	if(elementoActual != null && elementoSiguiente != null){
+            		if (elementoActual.getScore() < elementoSiguiente.getScore()) {
+	              	  // Exchange
+	              	  playerScore[j] = elementoSiguiente;
+	              	  playerScore[j + 1] = elementoActual;
+	           		}
+            	}
        	 	}
     	}
     	return playerScore;

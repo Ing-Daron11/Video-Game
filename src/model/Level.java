@@ -14,7 +14,9 @@ public class Level{
 	public static final int SIZE_OF_TREASURES = 10;//por nivel
 	public static final int SIZE_OF_ENEMIES = 10; //por nivel
 
-	public Level(int inId, int inScoreNeeded){ //Constructor
+	/**Constructor
+	 */
+	public Level(int inId, int inScoreNeeded){
 		id = inId;
 		scoreNeeded = inScoreNeeded;
 		treasure = new Treasure[SIZE_OF_TREASURES]; //int type, String image, int numLevel
@@ -97,6 +99,10 @@ public class Level{
 		return msj;
 	}
 
+	/**This method allows to count the amount of units of a specific treasure in one level.
+	 * @param: typeTreasure: int = It contains the type of the treasure that is going to be searched
+	 * @return: counter: int = It contains the units of the treasure searched.
+	 */
 	public int countSpecificTreasure(int typeTreasure){
 		int counter = 0;
 		for (int i = 0;i < SIZE_OF_TREASURES;i++){
@@ -110,6 +116,10 @@ public class Level{
 		return counter;
 	}
 
+	/**This method allows to count the amount of units of a specific enemy in one level.
+	 * @param: typeEnemy: int = It contains the type of the enemy that is going to be searched
+	 * @return: counter: int = It contains the units of the enemy searched.
+	 */
 	public int countSpecificEnemy(int typeEnemy){
 		int counter = 0;
 		for (int i = 0; i < SIZE_OF_ENEMIES;i++){
@@ -123,6 +133,10 @@ public class Level{
 		return counter;
 	}
 
+	/**This method allows to find the enemy with the hieghes score
+	 * @param: none
+	 * @return: highestScore: int = It contains the hieghest score of the enemy.
+	 */
 	public int enemyWhithHighestScoreInt(){
 		int highestScore = 0;
 		for(int i = 0; i< SIZE_OF_ENEMIES; i++){
@@ -135,6 +149,10 @@ public class Level{
 		return highestScore;
 	}
 
+	/**This method allows to obtain the name of the enemy with the hieghest score based on his score.
+	 * @param: scoreGive: int = It contains the score of the enemy with the hieghest score
+	 * @return: msj: String = It contais name of this enemy
+	 */
 	public String getEnemyName(int scoreGive){
 		String msj = "";
 		boolean sw = false;
@@ -155,6 +173,10 @@ public class Level{
 		return msj;
 	}
 
+	/**This method allows to count the consonants of the names of the enemies in the game.
+	 * @param: none.
+	 * @return: counter: int = It Contains the number 
+	 */
 	public int showConsonantsOfEnemies(){
 		int counter = 0;
 		for(int i = 0; i < SIZE_OF_ENEMIES; i++){

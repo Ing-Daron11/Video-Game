@@ -11,6 +11,8 @@ public class Treasure{
 	private double posX;
 	private double posY;
 
+	/**Constructor
+	 */
 	public Treasure(int type, String image, int numLevel){
 		this.type = type;
 		this.image = image;

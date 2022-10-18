@@ -7,7 +7,8 @@ public class Enemy{
 	private int scoreGive;
 	private int numLevel;
 
-	//Constructor
+	/**Constructor
+	 */
 	public Enemy(int type, int scoreRemove, int scoreGive, int numLevel){
 		this.scoreRemove = scoreRemove;
 		this.scoreGive = scoreGive;

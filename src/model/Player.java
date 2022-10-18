@@ -6,7 +6,8 @@ public class Player{
 	private int lives;
 	private int level;
 
-	//Constructor
+	/**Constructor
+	 */
 	public Player(String inId, String inNickname){
 		id = inId;
 		nickname = inNickname;
